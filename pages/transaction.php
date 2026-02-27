@@ -186,7 +186,8 @@ $rowPros = mysqli_fetch_all($selectProduct, MYSQLI_ASSOC);
             <div class="border-top pt-3">
                 <div class="d-flex justify-content-between">
                     <small>Subtotal</small>
-                    <small id="subTotal">Rp0</small>
+                    <small id="subt.
+                    otal">Rp0</small>
                 </div>
                 <div class="d-flex justify-content-between">
                     <small>Tax</small>
@@ -205,7 +206,7 @@ $rowPros = mysqli_fetch_all($selectProduct, MYSQLI_ASSOC);
             <!-- Button -->
             <div class="mt-3 d-flex gap-2">
                 <button class="btn btn-outline-info w-50">Save</button>
-                <button class="btn btn-success w-50">Payment</button>
+                <button class="btn btn-success w-50" data-bs-toggle="modal" data-bs-target="#exampleModal" id="btn-payment">Payment</button>
             </div>
         </div>
     </div>

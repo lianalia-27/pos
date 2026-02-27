@@ -83,3 +83,64 @@ $tempOrderCode = 'INV-' . date('Ymd-His')
         </div>
     </div>
 </div>
+
+<script>
+    function calculateCartSummary() {
+        const cart = getCart();
+        let subtotal = 0;
+        cart.forEach(item => {
+            subtotal += item.price * item.qty;
+        });
+        const tax = subtotal * 0.12;
+        const discount = subtotal * 0.10;
+        const total = subtotal + tax - discount;
+
+        return {
+            subtotal,
+            tax,
+            discount,
+            total
+        };
+    }
+
+    function calculateTotal() {
+        const summary = calculateCartSummary();
+
+        document.querySelector("#subtotal").textContent = formatRupiah(summary.subtotal);
+        document.querySelector("#tax").textContent = formatRupiah(summary.tax);
+        document.querySelector("#discount").textContent = formatRupiah(summary.discount);
+        document.querySelector("#total-bill").textContent = formatRupiah(summary.total);
+    }
+    document.querySelector('#btn-payment').addEventListener('click', fillPaymentModal);
+
+    function fillPaymentModal() {
+        const cart = getCart();
+        const tbody = document.querySelector("#modal-order-items");
+        const totalModal = document.querySelector("#modal-total");
+
+        tbody.innerHTML = '';
+        cart.forEach((item, index) => {
+            const subtotal = item.price * item.qty;
+
+            tbody.innerHTML += `
+            <tr>
+            <td>${index + 1}</td>
+            <td>${item.name}</td>
+            <td>${item.qty}</td>
+            <td>${formatRupiah(item.price)}</td>
+            <td>${formatRupiah(subtotal)}</td>
+            <td></td>
+            </tr>
+            `;
+        });
+        const summary = calculateCartSummary();
+        totalModal.textContent = formatRupiah(summary.total);
+    }
+    document.querySelector("#pay-amount").addEventListener('input', function(){
+        const pay = parseInt(this.value) || 0;
+        const summary = calculateCartSummary();
+        const change = pay - summary.total;
+
+        document.querySelector('#change-amount').textContent = change >= 0 ? formatRupiah(change) : 'Rp 0';
+    });
+</script>

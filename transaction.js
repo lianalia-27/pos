@@ -84,16 +84,16 @@
 
     function calculateTotal() {
         const cart = getCart();
-        let subTotal = 0;
+        let subtotal = 0;
         cart.forEach(item => {
-            subTotal += item.price * item.qty;
+            subtotal += item.price * item.qty;
         });
 
-        const tax = subTotal * 0.12; //pajak 12%
-        const discount = subTotal * 0.10;  //diskon 10%
-        const total = subTotal + tax - discount;
+        const tax = subtotal * 0.12; //pajak 12%
+        const discount = subtotal * 0.10;  //diskon 10%
+        const total = subtotal + tax - discount;
 
-        document.querySelector('#subTotal').textContent = formatRupiah(subTotal);
+        document.querySelector('#subtotal').textContent = formatRupiah(subtotal);
         document.querySelector('#tax').textContent = formatRupiah(tax);
         document.querySelector('#discount').textContent = formatRupiah(discount);
         document.querySelector('#total-bill').textContent = formatRupiah(total);
