@@ -205,7 +205,7 @@ $rowPros = mysqli_fetch_all($selectProduct, MYSQLI_ASSOC);
             <!-- Button -->
             <div class="mt-3 d-flex gap-2">
                 <button class="btn btn-outline-info w-50">Save</button>
-                <button class="btn btn-success w-50" data-bs-toggle="modal" data-bs-target="#exampleModal">Payment</button>
+                <button class="btn btn-success w-50">Payment</button>
             </div>
         </div>
     </div>
