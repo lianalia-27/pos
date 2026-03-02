@@ -1,66 +1,68 @@
 <?php
-$selectProducts = mysqli_query($koneksi, "SELECT categories.category_name, products.* FROM products LEFT JOIN 
-categories ON products.category_id = categories.id ORDER BY id DESC");
+$selectProducts = mysqli_query($koneksi, "SELECT products.*, categories.category_name 
+    FROM products
+    LEFT JOIN categories ON products.category_id = categories.id
+    ORDER BY products.id DESC");
+
 $rowProducts = mysqli_fetch_all($selectProducts, MYSQLI_ASSOC);
 
 if (isset($_GET['idDel'])) {
-    $idDel = $_GET['idDel'];
-    // Check Foto:
-    $foto =  mysqli_query($koneksi, "SELECT product_photo FROM products WHERE id='$idDel'");
-    $row = mysqli_fetch_assoc($foto);
-    unlink("assets/img/" . $row['product_photo']);
+  $idDel = $_GET['idDel'];
+  // check foto
 
-    $delete = mysqli_query($koneksi, "DELETE FROM products WHERE id='$idDel'");
-    if ($delete) {
-        header("location:?page=product");
-    }
+  $foto = mysqli_query($koneksi, "SELECT product_photo FROM products WHERE id=$idDel");
+  $row = mysqli_fetch_assoc($foto);
+  unlink("assets/img/" . $row['product_photo']);
+  
+  $deleteProduct = mysqli_query($koneksi, "DELETE FROM products WHERE id='$idDel'");
+  if ($deleteProduct) {
+    header("location:?page=product");
+  }
 }
-
 ?>
-
-
-
 <div class="card table-responsive">
-    <div class="card-header">
-        <h1>Products</h1>
-        <div class="card-body">
-            <a href="?page=tambah-edit-product" class="btn btn-primary my-2">ADD</a>
-            <table class="table table-bordered text-center">
-                <tr>
-                    <th>No</th>
-                    <th>Category Name</th>
-                    <th>Product Name</th>
-                    <th>Photo</th>
-                    <th>Price</th>
-                    <th>Stock</th>
-                    <th>Actions</th>
-                </tr>
-                <?php
-                $no = 1;
-                foreach ($rowProducts as $value) {
-                ?>
-                    <tr>
-                        <td><?php echo $no++ ?></td>
-                        <td><?php echo $value['category_name'] ?></td>
-                        <td><?php echo $value['product_name'] ?></td>
-                        <td><img src="assets/img/<?php echo $value['product_photo'] ?>" alt="" width="120"></td>
-                        <td>Rp. <?php echo number_format($value['product_price'], 2, ',', '.') ?></td>
-                        <td><?php echo $value['qty'] ?></td>
-                        <td>
-                            <a href="?page=tambah-edit-product&id=<?php echo base64_encode($value['id']) ?>" class="btn btn-success btn-sm">Edit</a>
-                            <form action="?page=product&idDel=<?php echo $value['id'] ?>"
-                                method="post" onclick="return confirm('R You sure want to delete?')" class="d-inline">
-                                <button class="btn btn-danger btn-sm">Delete</button>
-                            </form>
-                        </td>
-                    </tr>
-                <?php
-                }
-                ?>
-
-
-
-            </table>
-        </div>
+  <div class="card-header">
+    <div class="card-title">
+      <h4>Data Produk</h4>
     </div>
+  </div>
+  <div class="card-body">
+    <div align="right">
+      <a href="?page=tambah-edit-product" class="btn btn-primary my-2">Tambah Produk Baru</a>
+    </div>
+    <table class="table table-bordered text-center">
+      <tr>
+        <th>No</th>
+        <th>Kategori</th>
+        <th>Nama Produk</th>
+        <th>Gambar</th>
+        <th>Harga</th>
+        <th>Stok</th>
+        <th>Tindakan</th>
+      </tr>
+      <?php
+      $no = 1;
+      foreach ($rowProducts as $product) {
+      ?>
+      <tr>
+        <td>
+          <?= $no++ ?></td>
+        <td><?= $product['category_name'] ?></td>
+        <td><?= $product['product_name'] ?></td>
+        <td><img src="assets/img/<?= $product['product_photo'] ?> " alt="" width="50"></td>
+        <td>Rp. <?= number_format($product['product_price'], 2, ',', '.')  ?></td>
+        <td><?= $product['qty'] ?></td>
+        <td>
+          <a class=" btn btn-success btn-sm" href="?page=tambah-edit-product&id=<?= base64_encode($product['id'])?>">
+            Ubah</a>
+          <form action="?page=product&idDel=<?= $product['id'] ?>" method="post"
+            onclick="return confirm('Apakah anda yakin data ini akan di delete?')" class="d-inline">
+            <button class="btn btn-danger btn-sm" href="">Hapus</button>
+          </form>
+        </td>
+      </tr>
+      <?php
+      } ?>
+    </table>
+  </div>
 </div>
