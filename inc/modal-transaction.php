@@ -1,7 +1,3 @@
-<!-- Button trigger modal -->
-<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Launch demo modal
-</button> -->
 
 <?php
 date_default_timezone_set("Asia/Jakarta");
@@ -10,7 +6,6 @@ $datetime = date("Y-m-d H:i:s");
 $tempOrderCode = 'INV-' . date('Ymd-His')
 
 ?>
-
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-fullscreen">
@@ -84,25 +79,23 @@ $tempOrderCode = 'INV-' . date('Ymd-His')
         </div>
     </div>
 </div>
-
 <script>
     const btnSave = document.getElementById('btn-save-order');
+    // btnSave.addEventListener('click', () =>{});
     btnSave.addEventListener('click', async function() {
-    
         let cart = getCart()
         let payload = {
-            code: document.getElementById('modal-code').value,
-            date: document.getElementById('modal-date').value,
-            customer_name: document.getElementById('customer-name').value,
-            amount: document.getElementById('total-input').value,
+            order_code: document.getElementById('modal-order-code').value,
+            order_date: document.getElementById('modal-order-date').value,
+            customer_name: document.getElementById('customer_name').value,
+            order_amount: document.getElementById('total-input').value,
             order_change: document.getElementById('change-input').value,
             order_pay: document.getElementById('pay-amount').value,
             cart: cart,
         }
 
-
         try {
-            const res = await fetch("save-transaction.php", {
+            const res = await fetch("save_transaction.php", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -117,9 +110,9 @@ $tempOrderCode = 'INV-' . date('Ymd-His')
 
         } catch (error) {
             console.log(error)
-            alert('Beim Speichern der Transaktion ist ein Fehler aufgetreten!!'); //('Terjadi kesalahan saat menyimpan transaksi!!')
-
+            alert('Terjadi kesalahan saat menyimpan transaksi!!');
         }
+
 
     });
 
@@ -129,6 +122,7 @@ $tempOrderCode = 'INV-' . date('Ymd-His')
         cart.forEach(item => {
             subtotal += item.price * item.qty;
         });
+
         const tax = subtotal * 0.12;
         const discount = subtotal * 0.10;
         const total = subtotal + tax - discount;
@@ -149,15 +143,17 @@ $tempOrderCode = 'INV-' . date('Ymd-His')
         document.querySelector("#discount").textContent = formatRupiah(summary.discount);
         document.querySelector("#total-bill").textContent = formatRupiah(summary.total);
     }
+
     document.querySelector('#btn-payment').addEventListener('click', fillPaymentModal);
 
     function fillPaymentModal() {
         const cart = getCart();
         const tbody = document.querySelector("#modal-order-items");
-        const totalModal = document.querySelector("#modal-total");
+        const totalModal = document.querySelector('#modal-total');
         const totalInput = document.getElementById('total-input');
 
         tbody.innerHTML = '';
+
         cart.forEach((item, index) => {
             const subtotal = item.price * item.qty;
 
