@@ -30,39 +30,44 @@ if (isset($_GET['idDel'])) {
     <div align="right">
       <a href="?page=tambah-edit-product" class="btn btn-primary my-2">Tambah Produk Baru</a>
     </div>
-    <table class="table table-bordered text-center">
-      <tr>
-        <th>No</th>
-        <th>Kategori</th>
-        <th>Nama Produk</th>
-        <th>Gambar</th>
-        <th>Harga</th>
-        <th>Stok</th>
-        <th>Tindakan</th>
-      </tr>
-      <?php
-      $no = 1;
-      foreach ($rowProducts as $product) {
-      ?>
-      <tr>
-        <td>
-          <?= $no++ ?></td>
-        <td><?= $product['category_name'] ?></td>
-        <td><?= $product['product_name'] ?></td>
-        <td><img src="assets/img/<?= $product['product_photo'] ?> " alt="" width="50"></td>
-        <td>Rp. <?= number_format($product['product_price'], 2, ',', '.')  ?></td>
-        <td><?= $product['qty'] ?></td>
-        <td>
-          <a class=" btn btn-success btn-sm" href="?page=tambah-edit-product&id=<?= base64_encode($product['id'])?>">
-            Ubah</a>
-          <form action="?page=product&idDel=<?= $product['id'] ?>" method="post"
-            onclick="return confirm('Apakah anda yakin data ini akan di delete?')" class="d-inline">
-            <button class="btn btn-danger btn-sm" href="">Hapus</button>
-          </form>
-        </td>
-      </tr>
-      <?php
-      } ?>
+    <table class="table table-bordered text-center" id="myTable">
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Kategori</th>
+          <th>Nama Produk</th>
+          <th>Gambar</th>
+          <th>Harga</th>
+          <th>Stok</th>
+          <th>Tindakan</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
+        $no = 1;
+        foreach ($rowProducts as $product) {
+        ?>
+        <tr>
+          <td>
+            <?= $no++ ?></td>
+          <td><?= $product['category_name'] ?></td>
+          <td><?= $product['product_name'] ?></td>
+          <td><img src="assets/img/<?= $product['product_photo'] ?> " alt="" width="50"></td>
+          <td>Rp. <?= number_format($product['product_price'], 2, ',', '.')  ?></td>
+          <td><?= $product['qty'] ?></td>
+          <td>
+            <a class=" btn btn-success btn-sm" href="?page=tambah-edit-product&id=<?= base64_encode($product['id'])?>">
+              Ubah</a>
+            <form action="?page=product&idDel=<?= $product['id'] ?>" method="post"
+              onclick="return confirm('Apakah anda yakin data ini akan di delete?')" class="d-inline">
+              <button class="btn btn-danger btn-sm" href="">Hapus</button>
+            </form>
+          </td>
+        </tr>
+        <?php
+        }
+        ?>
+      </tbody>
     </table>
   </div>
 </div>

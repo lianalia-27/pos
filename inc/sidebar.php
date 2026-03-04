@@ -1,16 +1,16 @@
 <div class="sidebar-wrapper scrollbar scrollbar-inner">
-                <div class="sidebar-content">
-                    <ul class="nav nav-secondary">
-                        <li class="nav-item active">
-                            <a
-                              
-                                href="?page=dashboard"
-                                aria-expanded="false">
-                                <i class="fas fa-home"></i>
-                                <p>Dashboard</p>
-                                <!-- <span class="caret"></span> -->
-                            </a>
-                            <!-- <div class="collapse" id="dashboard">
+    <div class="sidebar-content">
+        <ul class="nav nav-secondary">
+            <li class="nav-item active">
+                <a
+
+                    href="?page=dashboard"
+                    aria-expanded="false">
+                    <i class="fas fa-home"></i>
+                    <p>Dashboard</p>
+                    <!-- <span class="caret"></span> -->
+                </a>
+                <!-- <div class="collapse" id="dashboard">
                                 <ul class="nav nav-collapse">
                                     <li>
                                         <a href="../demo1/index.html">
@@ -19,16 +19,16 @@
                                     </li>
                                 </ul>
                             </div> -->
-                        </li>
-                         <li class="nav-item active">
-                            <a
-                                href="?page=user"
-                                aria-expanded="false">
-                                <i class="fas fa-layer-group"></i>
-                                <p>Users</p>
-                                <!-- <span class="caret"></span> -->
-                            </a>
-                            <!-- <div class="collapse" id="dashboard">
+            </li>
+            <li class="nav-item active">
+                <a
+                    href="?page=user"
+                    aria-expanded="false">
+                    <i class="fas fa-layer-group"></i>
+                    <p>Users</p>
+                    <!-- <span class="caret"></span> -->
+                </a>
+                <!-- <div class="collapse" id="dashboard">
                                 <ul class="nav nav-collapse">
                                     <li>
                                         <a href="../demo1/index.html">
@@ -37,16 +37,16 @@
                                     </li>
                                 </ul>
                             </div> -->
-                        </li>
-                         <li class="nav-item active">
-                            <a
-                                href="?page=product"
-                                aria-expanded="false">
-                                <i class="fas fa-layer-group"></i>
-                                <p>Products</p>
-                                <!-- <span class="caret"></span> -->
-                            </a>
-                            <!-- <div class="collapse" id="dashboard">
+            </li>
+            <li class="nav-item active">
+                <a
+                    href="?page=product"
+                    aria-expanded="false">
+                    <i class="fas fa-layer-group"></i>
+                    <p>Products</p>
+                    <!-- <span class="caret"></span> -->
+                </a>
+                <!-- <div class="collapse" id="dashboard">
                                 <ul class="nav nav-collapse">
                                     <li>
                                         <a href="../demo1/index.html">
@@ -55,14 +55,14 @@
                                     </li>
                                 </ul>
                             </div> -->
-                        </li>
-                        <li class="nav-section">
-                            <span class="sidebar-mini-icon">
-                                <i class="fa fa-ellipsis-h"></i>
-                            </span>
-                            <h4 class="text-section">Components</h4>
-                        </li>
-                        <!-- <li class="nav-item">
+            </li>
+            <li class="nav-section">
+                <span class="sidebar-mini-icon">
+                    <i class="fa fa-ellipsis-h"></i>
+                </span>
+                <h4 class="text-section">Components</h4>
+            </li>
+            <!-- <li class="nav-item">
                             <a data-bs-toggle="collapse" href="#base">
                                 <i class="fas fa-layer-group"></i>
                                 <p>Base</p>
@@ -118,7 +118,7 @@
                                 </ul>
                             </div>
                         </li> -->
-                        <!-- <li class="nav-item">
+            <!-- <li class="nav-item">
                             <a data-bs-toggle="collapse" href="#sidebarLayouts">
                                 <i class="fas fa-th-list"></i>
                                 <p>Sidebar Layouts</p>
@@ -139,23 +139,28 @@
                                 </ul>
                             </div>
                         </li> -->
-                        <li class="nav-item">
-                            <a data-bs-toggle="collapse" href="#forms">
-                                <i class="fas fa-pen-square"></i>
-                                <p>POS</p>
-                                <span class="caret"></span>
+            <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#forms">
+                    <i class="fas fa-pen-square"></i>
+                    <p>POS</p>
+                    <span class="caret"></span>
+                </a>
+                <div class="collapse" id="forms">
+                    <ul class="nav nav-collapse">
+                        <li>
+                            <a href="?page=transaction">
+                                <span class="sub-item">Transaction</span>
                             </a>
-                            <div class="collapse" id="forms">
-                                <ul class="nav nav-collapse">
-                                    <li>
-                                        <a href="?page=transaction">
-                                            <span class="sub-item">Transaction</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
                         </li>
-                        <!-- <li class="nav-item">
+                        <li>
+                            <a href="?page=laporan-penjualan">
+                                <span class="sub-item">Laporan Penjualan</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <!-- <li class="nav-item">
                             <a data-bs-toggle="collapse" href="#tables">
                                 <i class="fas fa-table"></i>
                                 <p>Tables</p>
@@ -176,7 +181,7 @@
                                 </ul>
                             </div>
                         </li> -->
-                        <!-- <li class="nav-item">
+            <!-- <li class="nav-item">
                             <a data-bs-toggle="collapse" href="#maps">
                                 <i class="fas fa-map-marker-alt"></i>
                                 <p>Maps</p>
@@ -197,7 +202,7 @@
                                 </ul>
                             </div>
                         </li> -->
-                        <!-- <li class="nav-item">
+            <!-- <li class="nav-item">
                             <a data-bs-toggle="collapse" href="#charts">
                                 <i class="far fa-chart-bar"></i>
                                 <p>Charts</p>
@@ -218,21 +223,21 @@
                                 </ul>
                             </div>
                         </li> -->
-                        <!-- <li class="nav-item">
+            <!-- <li class="nav-item">
                             <a href="widgets.html">
                                 <i class="fas fa-desktop"></i>
                                 <p>Widgets</p>
                                 <span class="badge badge-success">4</span>
                             </a>
                         </li> -->
-                        <!-- <li class="nav-item">
+            <!-- <li class="nav-item">
                             <a href="../../documentation/index.html">
                                 <i class="fas fa-file"></i>
                                 <p>Documentation</p>
                                 <span class="badge badge-secondary">1</span>
                             </a>
                         </li> -->
-                        <!-- <li class="nav-item">
+            <!-- <li class="nav-item">
                             <a data-bs-toggle="collapse" href="#submenu">
                                 <i class="fas fa-bars"></i>
                                 <p>Menu Levels</p>
@@ -283,6 +288,6 @@
                                 </ul>
                             </div>
                         </li> -->
-                    </ul>
-                </div>
-            </div>
+        </ul>
+    </div>
+</div>

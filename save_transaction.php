@@ -24,10 +24,11 @@ $cart  = $data->cart;
 // transaction_begin
 // mysqli_begin_transaction
 
+mysqli_begin_transaction($koneksi);
 try {
     $insertOrder = mysqli_query($koneksi, "INSERT INTO 
-    orders (order_code, order_date, customer_name, order_amount, order_change, order_status)
-     VALUES ('$order_code','$order_date','$customer_name','$order_amount','$order_change',1)");
+    orders (order_code, order_date, order_pay, customer_name, order_amount, order_change, order_status)
+     VALUES ('$order_code','$order_date','$order_pay','$customer_name','$order_amount','$order_change',1)");
 
     if (!$insertOrder) {
         echo json_encode([
@@ -54,13 +55,15 @@ try {
         $updateStock = mysqli_query($koneksi, "UPDATE products SET qty = qty - $product_qty 
         WHERE id = '$product_id'");
     }
+    mysqli_commit($koneksi);
     echo json_encode([
         "status" => true,
         "message" => "Transaksi berhasil",
         "order_id" => $data->order_code,
     ]);
 } catch (\Throwable $th) {
-    echo json_encode([
+   mysqli_rollback($koneksi);
+echo json_encode([
         "status" => false,
         "message" => $th->getMessage(),
     ]);

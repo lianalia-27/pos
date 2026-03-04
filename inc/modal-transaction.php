@@ -1,4 +1,3 @@
-
 <?php
 date_default_timezone_set("Asia/Jakarta");
 $datetime = date("Y-m-d H:i:s");
@@ -79,6 +78,7 @@ $tempOrderCode = 'INV-' . date('Ymd-His')
         </div>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     const btnSave = document.getElementById('btn-save-order');
     // btnSave.addEventListener('click', () =>{});
@@ -104,9 +104,40 @@ $tempOrderCode = 'INV-' . date('Ymd-His')
             });
             // const result = res.text();
             const result = await res.json();
-            console.log(result);
+            if (result.status === true) {
+                localStorage.removeItem('pos_cart');
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                });
+                Toast.fire({
+                    icon: "success",
+                    title: result.message || "Transaksi Baru Berhasil",
+                });
 
-            localStorage.removeItem('pos_cart');
+                Swal.fire({
+                    title: "Transaksi Berhasil!",
+                    text: 'Order Code: ' + result.order_id,
+                    icons: 'success',
+                    showCancelButton: true,
+                    confirmButtonText: "Cetak Struk",
+                    cancelButtonText: "Transaksi Baru",
+                }).then((res) => {
+                    if (res.isConfirmed) {
+                        window.open('print-struk.php?order_code=' + result.order_id, '_blank');
+                    } else {
+                        location.reload();
+                    }
+                });
+
+            }
 
         } catch (error) {
             console.log(error)
